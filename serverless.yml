@@ -1,4 +1,4 @@
-org: jairocatacora
+org: geraldocolchado
 service: api-s3
 
 provider:
@@ -8,7 +8,7 @@ provider:
   memorySize: 256
   timeout: 30
   iam:
-    role: arn:aws:iam::694117742192:role/LabRole
+    role: arn:aws:iam::447891120606:role/LabRole
 
 functions:
   lista_buckets:
@@ -25,6 +25,30 @@ functions:
     events:
       - http:
           path: /s3/bucket/lista-objetos
+          method: post
+          cors: true
+          integration: lambda
+  crear_bucket:
+    handler: crear_bucket.lambda_handler
+    events:
+      - http:
+          path: /s3/bucket/crear
+          method: post
+          cors: true
+          integration: lambda
+  crear_directorio:
+    handler: crear_directorio.lambda_handler
+    events:
+      - http:
+          path: /s3/bucket/crear-directorio
+          method: post
+          cors: true
+          integration: lambda
+  crear_archivo:
+    handler: crear_archivo.lambda_handler
+    events:
+      - http:
+          path: /s3/bucket/crear-archivo
           method: post
           cors: true
           integration: lambda
