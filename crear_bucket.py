@@ -9,7 +9,7 @@ def lambda_handler(event, context):
     
     # Proceso
     s3 = boto3.client('s3',region_name=reg)
-    s3.create_bucket(Bucket=bucket_name, CreateBucketConfiguration={'LocationConstraint': region})
+    s3.create_bucket(Bucket=bucket_name, CreateBucketConfiguration={'LocationConstraint': reg})
     
     # Salida
     return {
