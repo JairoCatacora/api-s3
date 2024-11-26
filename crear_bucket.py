@@ -4,10 +4,12 @@ import json
 def lambda_handler(event, context):
     # Entrada
     bucket_name = event['body']['bucket_name']
+
+    reg = 'us-east-1'
     
     # Proceso
-    s3 = boto3.client('s3')
-    s3.create_bucket(Bucket=bucket_name)  # Crear el bucket
+    s3 = boto3.client('s3',region_name=reg)
+    s3.create_bucket(Bucket=bucket_name, CreateBucketConfiguration={'LocationConstraint': region})
     
     # Salida
     return {
